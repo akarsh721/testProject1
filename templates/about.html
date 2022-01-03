@@ -59,7 +59,7 @@
             </div>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <li class="nav-item">
-                    <a class="navbar-brand mx-2" href="/about">About Us</a>
+                    <a class="navbar-brand mx-2" href="/contact">Contact</a>
                 </li>
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     </li>
@@ -67,7 +67,7 @@
                 </ul>
                 <form class="d-flex">
 
-                    {% if user_name is null %}
+                    {% if username is null %}
                     <button class="btn btn-outline-info mx-3" data-bs-toggle="modal" data-bs-target="#SignupModal"
                         type="button">SignUp</button>
                     <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#LoginModal"
@@ -79,16 +79,9 @@
                     <div class="btn-group">
                         <button type="button" class="btn btn-danger dropdown-toggle mx-2" data-bs-toggle="dropdown"
                             aria-expanded="false">
-                            {{name}}
+                            {{username}}
                         </button>
-                        <ul class="dropdown-menu">
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'updateProfile' userid %}">Profile</a>
-                            </li>
-
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
+                        <ul class="dropdown-menu">	
                             <li><a class="dropdown-item" href="/userlogout">Logout</a></li>
                         </ul>
                     </div>

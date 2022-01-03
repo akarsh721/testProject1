@@ -161,11 +161,13 @@ def updateProfile(request,id):
 
 
 def about(request):
-    return render(request,'about.html')
+    loggedInUser = request.session.get('loggedInUser')
+    return render(request,'about.html',{'username':loggedInUser})
 
 
 def contact(request):
-    return render(request,'contact.html')
+    loggedInUser = request.session.get('loggedInUser')
+    return render(request,'contact.html',{'username':loggedInUser})
 
 
 def writeUs(request):
