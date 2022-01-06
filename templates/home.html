@@ -20,21 +20,23 @@
     <nav class="navbar navbar-expand-lg navbar-$teal-300 bg-dark">
         <!-- <nav class="navbar navbar-expand-lg navbar-$teal-400 bg-dark" style="background-color: #7FFF00;">     -->
         <div class="container-fluid">
-            <a href="#" class="pull-left"><img src="{% static 'images/logo.png' %}" alt="logo" style="height: 50px;"></a> 
+            <a href="/" class="pull-left"><img src="{% static 'images/logo.png' %}" alt="logo"
+                    style="height: 50px;"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="myqueries">
-                <a class="navbar-brand mx-2" href="/fetchqueries" style=" color: #1aff8c; font-family: Arial, sans-serif;">Queries</a>
+                <a class="navbar-brand mx-2" href="/fetchqueries"
+                    style=" color: #1aff8c; font-family: Arial, sans-serif;">Queries</a>
             </div>
             <li class="nav-item">
                 <a class="navbar-brand mx-1" href="/about">About Us</a>
-              </li>
-              <li class="nav-item">
+            </li>
+            <li class="nav-item">
                 <a class="navbar-brand mx-2" href="/contact">Contact</a>
-              </li>
+            </li>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 </ul>
@@ -58,8 +60,8 @@
                         <ul class="dropdown-menu">
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'updateProfile' userid %}">Profile</a>
-                              </li>
-                            
+                            </li>
+
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
@@ -76,7 +78,18 @@
     <h1>
         <center>Welcome {{name}}</center>
     </h1>
-        <p><center>Logged in as : {{user_name}}</center></p>
+    <p>
+        <center>Logged in as : {{user_name}}</center>
+    </p>
+
+    <!-- For Messages -->
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{message.tags}}" id="message_container">
+        <center>{{message}}</center>
+    </div>
+    {% endfor %}
+    {% endif %}
 
     <!-- For Home form Design -->
     {% if user_name is null %}
@@ -111,7 +124,7 @@
                     id="floatingTextarea2" style="height: 100px" required></textarea>
                 <label for="floatingTextarea2">Description</label>
             </div>
-                <input type="hidden" name="queriedBy" value="{{user_name}}">
+            <input type="hidden" name="queriedBy" value="{{user_name}}">
             <button class="btn btn-primary my-4" type="submit">Submit</button>
         </form>
     </div>
@@ -119,6 +132,17 @@
     <!-- Home Design ends -->
 
 
+
+    <!-- For message timeout -->
+    <script>
+        // suppose the `id` attribute of element is `message_container`.
+        var message_ele = document.getElementById("message_container");
+
+        setTimeout(function () {
+            message_ele.style.display = "none";
+        }, 3000);
+// Timeout is 3 sec, you can change it
+    </script>
 </body>
 
 </html>

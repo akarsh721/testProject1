@@ -25,6 +25,8 @@ def index(request):
 
             if userform.is_valid():
                 userform.save()
+                print("Successfully Registered!")
+                messages.add_message(request,messages.SUCCESS,"Successfully Registered! Please Login to continue")
 
                 #SEND MAIL
                 # useremail = request.POST['username']
@@ -75,10 +77,8 @@ def index(request):
 
                 # print the send message
                 print(returned_msg['message'])'''
-
-                print("Successfully Registered!")
-               
-
+                
+                                    
             else:
                 print(userform.errors)
 
@@ -114,9 +114,12 @@ def home(request):
             if newUserQuestionForm.is_valid():
                 newUserQuestionForm.save()
                 print("Query uploaded successfully")
+                messages.add_message(request,messages.SUCCESS,"Query submitted successfully!")
+                return redirect("/home")
 
             else:
                 print(userQuestionForm.errors)
+                messages.add_message(request,messages.ERROR,userQuestionForm.errors)
 
         else:
             newUserQuestionForm = userQuestionForm()
@@ -135,8 +138,13 @@ def fetchqueries(request):
     loggedInUsername = request.session.get('loggedInUser')
     queryobject = userQuestion.objects.filter(queriedBy = loggedInUsername)
     # print(queryobject)
-    return render(request,'fetchqueries.html',{'queryobject':queryobject})
+    return render(request,'fetchqueries.html',{'queryobject':queryobject,'loggedInUsername':loggedInUsername})
 
+
+def deleteQuery(request,id):
+    delquery = userQuestion.objects.get(pk = id)
+    delquery.delete()
+    return redirect("/fetchqueries")
 
 def updateProfile(request,id):
     userinfo = RegisterUser.objects.get(pk=id)

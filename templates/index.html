@@ -24,7 +24,7 @@
     <!-- <nav class="navbar navbar-expand-lg navbar-$teal-400 bg-dark" style="background-color: #7FFF00;"> 
           -->
     <div class="container-fluid">
-      <a href="#" class="pull-left"><img src="{% static 'images/logo.png' %}" alt="logo" style="height: 50px;"></a> 
+      <a href="#" class="pull-left"><img src="{% static 'images/logo.png' %}" alt="logo" style="height: 50px;"></a>
       <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -40,20 +40,6 @@
           <li class="nav-item">
             <a class="nav-link" href="/contact">Contact</a>
           </li>
-          <!-- <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-              aria-expanded="false">
-              Dropdown
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-          </li> -->
         </ul>
         <form class="d-flex">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -69,7 +55,17 @@
 
   <!-- Navbar ends -->
 
-
+  <div class="row">
+    <div class="col-md-6">
+      {% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-{{message.tags}}" id="message_container" role="alert">
+        <center>{{ message }}</center>
+      </div>
+      {% endfor %}
+      {% endif %}
+    </div>
+  </div>
 
   <!-- carousel starts -->
   <div class="container my-4">
@@ -223,11 +219,13 @@
             <div class="col-12">
               <button class="btn btn-primary" type="submit" name="Signup" value="Signup">Submit</button>
             </div>
-            <center><hr style="width: 80%;"></center>
+            <center>
+              <hr style="width: 80%;">
+            </center>
             <div class="col-sm-6">
               <a href="{% provider_login_url 'google' %}" class="btn btn-outline-danger">Signup with Google</a>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-6 float-right">
               <button class="btn btn-outline-primary ">Signup with Facebook</button>
             </div>
           </form>
@@ -280,6 +278,18 @@
     </div>
   </div>
   <!--Model Modal end -->
+
+
+  <!-- For message timeout -->
+  <script>
+    // suppose the `id` attribute of element is `message_container`.
+    var message_ele = document.getElementById("message_container");
+
+    setTimeout(function () {
+      message_ele.style.display = "none";
+    }, 3000);
+// Timeout is 3 sec, you can change it
+  </script>
 </body>
 
 </html>

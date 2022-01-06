@@ -26,7 +26,7 @@ class RegisterUser(models.Model):
 class userQuestion(models.Model):
     title = models.CharField(max_length=50)
     category = models.CharField(max_length=30)
-    fileupload = models.FileField(upload_to='UploadedFile')
+    fileupload = models.FileField(upload_to='UploadedFile',null=True,blank=True)
     description = models.TextField()
     queriedBy = models.CharField(max_length=30)
 
