@@ -15,7 +15,7 @@ class RegisterUser(models.Model):
    username = models.CharField(max_length=30)
    password = models.CharField(max_length=15)
    country = models.CharField(max_length=20)
-   age = models.PositiveIntegerField()
+   age = models.PositiveIntegerField(null=True)
    contact = models.PositiveBigIntegerField()
    gender = models.CharField(max_length=11)
    
