@@ -12,4 +12,6 @@ urlpatterns = [
     path('contact/',views.contact,name="contact"),
     path('contact/writeUs/',views.writeUs,name="contact_writeUs"),
     path('deleteQuery/<int:id>',views.deleteQuery,name="deleteQuery"),
+    path('userlogin/',views.userlogin,name="login"),
+    path('registerUser/',views.registerUser,name="signup"),
 ]

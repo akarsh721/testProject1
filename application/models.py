@@ -16,8 +16,9 @@ class RegisterUser(models.Model):
    password = models.CharField(max_length=15)
    country = models.CharField(max_length=20)
    age = models.PositiveIntegerField(null=True)
-   contact = models.PositiveBigIntegerField()
+#  contact = models.PositiveBigIntegerField()
    gender = models.CharField(max_length=11)
+   profile = models.ImageField(upload_to='ProfileImages',null=True,blank=True)
    
 
    def __str__(self) -> str:

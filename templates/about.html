@@ -1,11 +1,13 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
+	<meta name="description"
+		content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
 
 	<!-- title -->
 	<title>About</title>
@@ -31,86 +33,78 @@
 	<link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
 	<!-- responsive -->
 	<link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
+	<style>
+		/* body {
+			background-color: rgb(12, 56, 70);
+			color: white;
+		} */
+
+		.nav-item>a {
+			color: darkblue;
+			font-weight: bold;
+			font-size: larger;
+		}
+	</style>
 
 </head>
+
 <body>
-	
+
 	<!--PreLoader-->
-    <div class="loader">
-        <div class="loader-inner">
-            <div class="circle"></div>
-        </div>
-    </div>
-    <!--PreLoader Ends-->
-
-	<!-- Start Navbar -->
-	<nav class="navbar navbar-expand-lg navbar-$teal-300 bg-dark">
-        <!-- <nav class="navbar navbar-expand-lg navbar-$teal-400 bg-dark" style="background-color: #7FFF00;">     -->
-        <div class="container-fluid">
-            <a href="#" class="pull-left"><img src="{% static 'images/logo.png' %}" alt="logo"
-                    style="height: 50px;"></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="myhome">
-                <a class="navbar-brand mx-2" href="/home" style="color:#1aff8c;">Home</a>
-            </div>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <li class="nav-item">
-                    <a class="navbar-brand mx-2" href="/contact">Contact</a>
-                </li>
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    </li>
-                    <li style="color: aqua; margin: 2% 0 0 2%;"><strong>{{user_name}}</strong></li>
-                </ul>
-                <form class="d-flex">
-
-                    {% if username is null %}
-                    <button class="btn btn-outline-info mx-3" data-bs-toggle="modal" data-bs-target="#SignupModal"
-                        type="button">SignUp</button>
-                    <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#LoginModal"
-                        type="button">LogIn</button>
-
-                    {% else %}
-                    <!-- <a href="/userlogout" class="btn btn-outline-danger mx-2">Logout</a> -->
-                    <!-- Example single danger button -->
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-danger dropdown-toggle mx-2" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            {{username}}
-                        </button>
-                        <ul class="dropdown-menu">	
-                            <li><a class="dropdown-item" href="/userlogout">Logout</a></li>
-                        </ul>
-                    </div>
-                    {% endif %}
-                </form>
-            </div>
-        </div>
-    </nav>
-	<!-- End Navbar -->
-	
-	<!-- search area -->
-	<div class="search-area">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<span class="close-btn"><i class="fas fa-window-close"></i></span>
-					<div class="search-bar">
-						<div class="search-bar-tablecell">
-							<h3>Search For:</h3>
-							<input type="text" placeholder="Keywords">
-							<button type="submit">Search <i class="fas fa-search"></i></button>
-						</div>
-					</div>
-				</div>
-			</div>
+	<div class="loader">
+		<div class="loader-inner">
+			<div class="circle"></div>
 		</div>
 	</div>
-	<!-- end search arewa -->
-	
+	<!--PreLoader Ends-->
+
+	<!-- Start Navbar -->
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<!-- <nav class="navbar navbar-expand-lg navbar-$teal-400 bg-dark" style="background-color: #7FFF00;">     -->
+		<div class="container-fluid">
+			<a href="#" class="pull-left"><img src="{% static 'images/logo.png' %}" alt="logo"
+					style="height: 50px;"></a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+				data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="myhome">
+				<a class="navbar-brand mx-2" href="/home" style="color:rgb(16, 117, 2); font-weight: bold;">Home</a>
+			</div>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<li class="nav-item">
+					<a class="navbar-brand mx-2" href="/contact">Contact</a>
+				</li>
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					</li>
+					<li style="color: aqua; margin: 2% 0 0 2%;"><strong>{{user_name}}</strong></li>
+				</ul>
+				<form class="d-flex">
+
+					{% if username is null %}
+					<a href="/registerUser" class="btn btn-info mx-3">Signup</a>
+					<a href="/userlogin" class="btn btn-primary">Login</a>
+
+					{% else %}
+					<!-- <a href="/userlogout" class="btn btn-outline-danger mx-2">Logout</a> -->
+					<!-- Example single danger button -->
+					<div class="btn-group">
+						<button type="button" class="btn btn-danger dropdown-toggle mx-2" data-bs-toggle="dropdown"
+							aria-expanded="false">
+							{{username}}
+						</button>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown-item" href="/userlogout">Logout</a></li>
+						</ul>
+					</div>
+					{% endif %}
+				</form>
+			</div>
+		</div>
+	</nav>
+	<!-- End Navbar -->
+
 	<!-- breadcrumb-section -->
 	<div class="breadcrumb-section breadcrumb-bg">
 		<div class="container">
@@ -141,7 +135,8 @@
 									</div>
 									<div class="content">
 										<h3>Home Delivery</h3>
-										<p>sit voluptatem accusantium dolore mque laudantium, totam rem aperiam, eaque ipsa quae ab illo.</p>
+										<p>sit voluptatem accusantium dolore mque laudantium, totam rem aperiam, eaque
+											ipsa quae ab illo.</p>
 									</div>
 								</div>
 							</div>
@@ -152,7 +147,8 @@
 									</div>
 									<div class="content">
 										<h3>Best Price</h3>
-										<p>sit voluptatem accusantium dolore mque laudantium, totam rem aperiam, eaque ipsa quae ab illo.</p>
+										<p>sit voluptatem accusantium dolore mque laudantium, totam rem aperiam, eaque
+											ipsa quae ab illo.</p>
 									</div>
 								</div>
 							</div>
@@ -163,7 +159,8 @@
 									</div>
 									<div class="content">
 										<h3>Custom Box</h3>
-										<p>sit voluptatem accusantium dolore mque laudantium, totam rem aperiam, eaque ipsa quae ab illo.</p>
+										<p>sit voluptatem accusantium dolore mque laudantium, totam rem aperiam, eaque
+											ipsa quae ab illo.</p>
 									</div>
 								</div>
 							</div>
@@ -174,7 +171,8 @@
 									</div>
 									<div class="content">
 										<h3>Quick Refund</h3>
-										<p>sit voluptatem accusantium dolore mque laudantium, totam rem aperiam, eaque ipsa quae ab illo.</p>
+										<p>sit voluptatem accusantium dolore mque laudantium, totam rem aperiam, eaque
+											ipsa quae ab illo.</p>
 									</div>
 								</div>
 							</div>
@@ -188,12 +186,12 @@
 
 	<!-- shop banner -->
 	<section class="shop-banner">
-    	<div class="container">
-        	<h3>December sale is on! <br> with big <span class="orange-text">Discount...</span></h3>
-            <div class="sale-percent"><span>Sale! <br> Upto</span>50% <span>off</span></div>
-            <a href="shop.html" class="cart-btn btn-lg">Shop Now</a>
-        </div>
-    </section>
+		<div class="container">
+			<h3>December sale is on! <br> with big <span class="orange-text">Discount...</span></h3>
+			<div class="sale-percent"><span>Sale! <br> Upto</span>50% <span>off</span></div>
+			<a href="shop.html" class="cart-btn btn-lg">Shop Now</a>
+		</div>
+	</section>
 	<!-- end shop banner -->
 
 	<!-- team section -->
@@ -203,7 +201,8 @@
 				<div class="col-lg-8 offset-lg-2 text-center">
 					<div class="section-title">
 						<h3>Our <span class="orange-text">Team</span></h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, fuga quas itaque eveniet beatae optio.</p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, fuga quas itaque eveniet
+							beatae optio.</p>
 					</div>
 				</div>
 			</div>
@@ -259,7 +258,9 @@
 							<div class="client-meta">
 								<h3>Saira Hakim <span>Local shop owner</span></h3>
 								<p class="testimonial-body">
-									" Sed ut perspiciatis unde omnis iste natus error veritatis et  quasi architecto beatae vitae dict eaque ipsa quae ab illo inventore Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium "
+									" Sed ut perspiciatis unde omnis iste natus error veritatis et quasi architecto
+									beatae vitae dict eaque ipsa quae ab illo inventore Sed ut perspiciatis unde omnis
+									iste natus error sit voluptatem accusantium "
 								</p>
 								<div class="last-icon">
 									<i class="fas fa-quote-right"></i>
@@ -273,7 +274,9 @@
 							<div class="client-meta">
 								<h3>David Niph <span>Local shop owner</span></h3>
 								<p class="testimonial-body">
-									" Sed ut perspiciatis unde omnis iste natus error veritatis et  quasi architecto beatae vitae dict eaque ipsa quae ab illo inventore Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium "
+									" Sed ut perspiciatis unde omnis iste natus error veritatis et quasi architecto
+									beatae vitae dict eaque ipsa quae ab illo inventore Sed ut perspiciatis unde omnis
+									iste natus error sit voluptatem accusantium "
 								</p>
 								<div class="last-icon">
 									<i class="fas fa-quote-right"></i>
@@ -287,7 +290,9 @@
 							<div class="client-meta">
 								<h3>Jacob Sikim <span>Local shop owner</span></h3>
 								<p class="testimonial-body">
-									" Sed ut perspiciatis unde omnis iste natus error veritatis et  quasi architecto beatae vitae dict eaque ipsa quae ab illo inventore Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium "
+									" Sed ut perspiciatis unde omnis iste natus error veritatis et quasi architecto
+									beatae vitae dict eaque ipsa quae ab illo inventore Sed ut perspiciatis unde omnis
+									iste natus error sit voluptatem accusantium "
 								</p>
 								<div class="last-icon">
 									<i class="fas fa-quote-right"></i>
@@ -336,7 +341,8 @@
 				<div class="col-lg-3 col-md-6">
 					<div class="footer-box about-widget">
 						<h2 class="widget-title">About us</h2>
-						<p>Ut enim ad minim veniam perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae.</p>
+						<p>Ut enim ad minim veniam perspiciatis unde omnis iste natus error sit voluptatem accusantium
+							doloremque laudantium, totam rem aperiam, eaque ipsa quae.</p>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6">
@@ -375,13 +381,14 @@
 		</div>
 	</div>
 	<!-- end footer -->
-	
+
 	<!-- copyright -->
 	<div class="copyright">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6 col-md-12">
-					<p>Copyrights &copy; 2019 - <a href="https://imransdesign.com/">Imran Hossain</a>,  All Rights Reserved.</p>
+					<p>Copyrights &copy; 2019 - <a href="https://imransdesign.com/">Imran Hossain</a>, All Rights
+						Reserved.</p>
 				</div>
 				<div class="col-lg-6 text-right col-md-12">
 					<div class="social-icons">
@@ -398,7 +405,7 @@
 		</div>
 	</div>
 	<!-- end copyright -->
-	
+
 	<!-- jquery -->
 	<script src="{% static 'assets/js/jquery-1.11.3.min.js' %}"></script>
 	<!-- bootstrap -->
@@ -421,4 +428,5 @@
 	<script src="{% static 'assets/js/main.js' %}"></script>
 
 </body>
+
 </html>

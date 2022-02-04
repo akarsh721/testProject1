@@ -18,8 +18,8 @@
             padding: 0;
             margin: 0;
             font-family: Arial, Helvetica, sans-serif;
-            color: rgb(48, 46, 46);
-            background-color: rgba(224, 217, 217, 0.863);
+            color: white;
+            background-color: rgb(12, 56, 70);
         }
 
         .container {
@@ -126,6 +126,18 @@
             color: blue;
             text-shadow: 0 0 2px rgba(76, 62, 158, 0.637);
         }
+
+        .nav-item>a {
+            color: darkblue;
+            font-weight: bold;
+            font-size: larger;
+        }
+
+        .footer-class {
+            background-color: #1c1d1d;
+            padding: 0%;
+            max-width: 100%;
+        }
     </style>
     <title>Contact Us</title>
 </head>
@@ -133,10 +145,9 @@
 <body>
 
     <!-- Navbar starts -->
-    <nav class="navbar navbar-expand-lg navbar-$teal-300 bg-dark">
-        <!-- <nav class="navbar navbar-expand-lg navbar-$teal-400 bg-dark" style="background-color: #7FFF00;">     -->
+    <nav class="navbar navbar-expand-lg navbar-$teal-300 bg-light">
         <div class="container-fluid">
-            <a href="#" class="pull-left"><img src="{% static 'images/logo.png' %}" alt="logo"
+            <a href="/" class="pull-left"><img src="{% static 'images/logo.png' %}" alt="logo"
                     style="height: 50px;"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -144,27 +155,28 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="myhome">
-                <a class="navbar-brand mx-2" href="/home" style="color:#1aff8c;">Home</a>
+                <a class="navbar-brand mx-2" href="/home" style="color:rgb(16, 117, 2); font-weight: bold;">Home</a>
             </div>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <li class="nav-item">
                     <a class="navbar-brand mx-2" href="/about">About Us</a>
                 </li>
+                {% if username is not null %}
+                <li class="nav-item">
+                    <a class="navbar-brand mx-2" href="{% url 'updateProfile' userinfo.id %}">Profile</a>
+                </li>
+                {% endif %}
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     </li>
-                    <li style="color: aqua; margin: 2% 0 0 2%;"><strong>{{user_name}}</strong></li>
+                    <li style="color: aqua; margin: 2% 0 0 2%;"><strong></strong></li>
                 </ul>
-                <form class="d-flex">
 
+                <form class="d-flex">
                     {% if username is null %}
-                    <button class="btn btn-outline-info mx-3" data-bs-toggle="modal" data-bs-target="#SignupModal"
-                        type="button">SignUp</button>
-                    <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#LoginModal"
-                        type="button">LogIn</button>
+                    <a href="/registerUser" class="btn btn-info mx-3" style="margin: 15px 0; padding: 10px 20px;">Signup</a>
+                    <a href="/userlogin" class="btn btn-primary" style="margin: 15px 0; padding: 10px 20px;">Login</a>
 
                     {% else %}
-                    <!-- <a href="/userlogout" class="btn btn-outline-danger mx-2">Logout</a> -->
-                    <!-- Example single danger button -->
                     <div class="btn-group">
                         <button type="button" class="btn btn-danger dropdown-toggle mx-2" data-bs-toggle="dropdown"
                             aria-expanded="false">
@@ -271,10 +283,10 @@
 
 
     <center>
-        <hr>
+        <hr style="width: 100%;">
     </center>
     <!-- Footer starts -->
-    <div class="container">
+    <div class="container footer-class">
         <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
             <div class="col-md-4 d-flex align-items-center">
                 <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
@@ -284,13 +296,16 @@
             </div>
 
             <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-                <li class="ms-3"><a class="text-muted" href="https://www.twitter.com"><svg class="bi" width="24" height="24">
+                <li class="ms-3"><a class="text-muted" href="https://www.twitter.com"><svg class="bi" width="24"
+                            height="24">
                             <use xlink:href="#twitter"></use>
                         </svg></a></li>
-                <li class="ms-3"><a class="text-muted" href="https://www.instagram.com"><svg class="bi" width="24" height="24">
+                <li class="ms-3"><a class="text-muted" href="https://www.instagram.com"><svg class="bi" width="24"
+                            height="24">
                             <use xlink:href="#instagram"></use>
                         </svg></a></li>
-                <li class="ms-3"><a class="text-muted" href="https://www.facebook.com"><svg class="bi" width="24" height="24">
+                <li class="ms-3"><a class="text-muted" href="https://www.facebook.com"><svg class="bi" width="24"
+                            height="24">
                             <use xlink:href="#facebook"></use>
                         </svg></a></li>
             </ul>

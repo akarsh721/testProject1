@@ -1,0 +1,188 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            background-color: rgb(12, 56, 70);
+            color: white;
+        }
+
+        .box {
+            width: 350px;
+            height: 380px;
+            position: absolute;
+            padding: 40px;
+            top: 40%;
+            left: 48%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .box h2 {
+            color: white;
+            text-transform: uppercase;
+        }
+
+        .box input[type="text"],
+        .box input[type="password"] {
+            border: 0;
+            background: none;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            border: 2px solid #41c1f3;
+            padding: 14px 10px;
+            width: 250px;
+            outline: none;
+            color: white;
+            border-radius: 20px;
+            transition: 0.25s;
+        }
+
+        .box input[type="text"]:focus,
+        .box input[type="password"]:focus {
+            /* width: 280px; */
+            border-color: yellow;
+        }
+
+        .box input[type="submit"] {
+            border: 0;
+            background: none;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            border: 2px solid #2ecc71;
+            padding: 14px 40px;
+            outline: none;
+            color: white;
+            border-radius: 20px;
+            transition: 0.25s;
+            cursor: pointer;
+        }
+
+        .box input[type="submit"]:hover {
+            background: #56f119;
+            color: black;
+        }
+
+        .box a {
+            color: white;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 14px;
+        }
+
+        .box a:hover {
+            color: yellow;
+        }
+    </style>
+
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- Navbar starts -->
+    <!-- <nav class="navbar navbar-expand-lg navbar-$teal-300 bg-light">
+        <div class="container-fluid">
+            <a href="#" class="pull-left"><img src="{% static 'images/logo.png' %}" alt="logo"
+                    style="height: 50px;"></a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact">Contact</a>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-dark" type="button">Search</button>
+                    {% if user is null %}
+                    <button class="btn btn-info mx-3" data-bs-toggle="modal" data-bs-target="#SignupModal"
+                        type="button">SignUp</button>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#LoginModal"
+                        type="button">LogIn</button>
+                    {% else %}
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-danger dropdown-toggle mx-2" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            {{user}}
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/userlogout">Logout</a></li>
+                        </ul>
+                    </div>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+    </nav> -->
+    <!-- Navbar ends -->
+
+    <!-- Message Framework -->
+    <div class="container my-2 w-50 messages">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{message.tags}}" id="message_container">
+                    <center>{{message}}</center>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    <div class="box">
+        <form action="" method="post" name="myform" onsubmit="return validateform()">
+            {% csrf_token %}
+            <h2>Login</h2>
+            <hr>
+            <label for="">Username</label>
+            <input type="text" name="username" placeholder="Username" id="username">
+            <label for="">Password</label>
+            <input type="password" name="password" placeholder="Password" id="password">
+            <input type="submit" name="" value="Login">
+        </form>
+        <a href="/registerUser">Don't have an account? Click to Register</a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+    <script>
+        function validateform() {
+            var name = document.myform.username.value;
+            var password = document.myform.password.value;
+
+            if (name == null || name == "") {
+                alert("Name can't be blank");
+                return false;
+            } else if (password.length < 6 || password.length >15) {
+                alert("Password length must be in between 6 and 15");
+                return false;
+            }
+        }  
+    </script>
+    <!-- For message timeout -->
+    <script>
+        var msg_ele = document.getElementById("message_container")
+        setTimeout(function(){
+            msg_ele.style.display = "none";
+        },3000);
+    </script>
+</body>
+
+</html>
