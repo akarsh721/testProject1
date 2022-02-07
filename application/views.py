@@ -20,14 +20,15 @@ import random
 # Create your views here.
 def index(request):
     loggedinUserName = request.session.get('loggedInUser')
-    if request.method == 'POST':
+    return render(request,'index.html',{'user':loggedinUserName})
+    '''if request.method == 'POST':
         if request.POST.get('Signup') == 'Signup':
             userform = RegisterUserForm(request.POST,request.FILES)
 
             if userform.is_valid():
                 userform.save()
                 print("Successfully Registered!")
-                messages.add_message(request,messages.SUCCESS,"Successfully Registered! Please Login to continue")
+                messages.add_message(request,messages.SUCCESS,"Successfully Registered! Please Login to continue")'''
 
                 #SEND MAIL
                 # useremail = request.POST['username']
@@ -42,7 +43,7 @@ def index(request):
                 # mention url
                 #Enter Number field and pass num here to activate this
             
-                '''url = "https://www.fast2sms.com/dev/bulk"
+    '''url = "https://www.fast2sms.com/dev/bulk"
                 usercontact = request.POST['contact']
                 otp = random.randint(1111,9999)
                 # create a dictionary
@@ -80,8 +81,8 @@ def index(request):
                 print(returned_msg['message'])'''
                 
                                     
-            else:
-                print(userform.errors)
+            # else:
+            #     print(userform.errors)
 
     #     elif request.POST.get('Login') == 'Login':
     #         # print("In Login")
@@ -97,7 +98,7 @@ def index(request):
     #             print("Invalid Credentials!")
     # else:
     #     userform = RegisterUserForm()
-    return render(request,'index.html',{'user':loggedinUserName})
+    
 
 
 def home(request):
@@ -153,7 +154,7 @@ def deleteQuery(request,id):
 
 def updateProfile(request,id):
     userinfo = RegisterUser.objects.get(pk=id)
-    username = userinfo.firstNames
+    username = userinfo.firstName
     print(username)
 
     if request.method == 'POST':
@@ -200,8 +201,8 @@ def userlogin(request):
 
         if loginCheck:
             request.session['loggedInUser'] = uname
-            messages.add_message(request,messages.SUCCESS,'Logged in successfully')
             print("Login Successful")
+            messages.add_message(request,messages.SUCCESS,'Logged in successfully')
             return redirect("/home")
         else:
             messages.add_message(request,messages.ERROR,'Invalid Credentials')
@@ -211,19 +212,22 @@ def userlogin(request):
 
 def registerUser(request):
     if request.method == 'POST':
-        registerform = RegisterUserForm(request.POST)
+        if request.POST['password'] == request.POST['cnfpswd']:
+            registerform = RegisterUserForm(request.POST,request.FILES)
 
-        if registerform.is_valid():
-            registerform.save()
-            # for user
-            messages.add_message(request,messages.SUCCESS,'Successfully Registered! Please Login to continue')
-            # for console
-            print("Register Successful")
-            # Email and sms
+            if registerform.is_valid():
+                registerform.save()
+                # for user
+                messages.add_message(request,messages.SUCCESS,'Successfully Registered! Please Login to continue')
+                # for console
+                print("Register Successful")
+                # Email and sms
+            else:
+                ers = registerform.errors
+                messages.add_message(request,messages.ERROR,ers)
+                print(ers)
         else:
-            ers = registerform.errors
-            messages.add_message(request,messages.ERROR,ers)
-            print(ers)
+            messages.add_message(request,messages.ERROR,'Password did not match')
     else:
         registerform = RegisterUserForm()
     return render(request,'signup.html')

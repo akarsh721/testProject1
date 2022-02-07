@@ -282,7 +282,11 @@
                     </th>
                     <td>{{query.title}}</td>
                     <td>{{query.category}}</td>
+                    {% if query.fileupload %}
                     <td>{{query.fileupload.url}}</td>
+                    {% else %}
+                    <td>No file uploaded</td>
+                    {% endif %}
                     <td>{{query.description}}</td>
                     <td>
                         <a class="btn btn-danger" href="{% url 'deleteQuery' query.id %}">Delete</a>
