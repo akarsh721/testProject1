@@ -90,7 +90,7 @@
         <span id="pswd_alert" style="color: red;" class="alert"></span>
     </div>
 
-<!-- Messaeg Framework  -->
+    <!-- Messaeg Framework  -->
     <div class=" container my-2 w-50 messages">
         {% if messages %}
         {% for message in messages %}
@@ -127,9 +127,6 @@
                         <span class="input-group-text" id="inputGroupPrepend">@</span>
                         <input type="email" class="form-control" id="validationCustomUsername"
                             aria-describedby="inputGroupPrepend" name="username" required>
-                        <div class="invalid-feedback">
-                            Please choose a email.
-                        </div>
                     </div>
                 </div>
                 <div class="col-md-auto mx-3">
@@ -211,11 +208,11 @@
                 </div>
             </div>
             <!-- <div class="col-sm-6">
-            <a href="{% provider_login_url 'google' %}" class="btn btn-outline-danger">Signup with Google</a>
-          </div>
-          <div class="col-sm-6 float-right">
-            <button class="btn btn-outline-primary ">Signup with Facebook</button>
-          </div> -->
+                <a href="{% provider_login_url 'google' %}" class="btn btn-outline-danger">Signup with Google</a>
+            </div>
+            <div class="col-sm-6 float-right">
+                <button class="btn btn-outline-primary ">Signup with Facebook</button>
+            </div> -->
         </form>
     </div>
 

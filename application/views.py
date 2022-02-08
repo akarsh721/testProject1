@@ -222,6 +222,15 @@ def registerUser(request):
                 # for console
                 print("Register Successful")
                 # Email and sms
+
+                #SEND MAIL
+                # useremail = request.POST['username']
+                # mail_subj = 'Registration Successful, Welcome User'
+                # mail_msg = f"Hello {useremail}, \n Thank You for registering with us. \n This is system generated mail , do not reply to this. "
+                # mail_from = settings.EMAIL_HOST_USER
+                # mail_to = [useremail,]
+                # send_mail(mail_subj,mail_msg,mail_from,mail_to)
+                
             else:
                 ers = registerform.errors
                 messages.add_message(request,messages.ERROR,ers)
