@@ -25,6 +25,7 @@
 </head>
 
 <body>
+    <!-- Navbar starts -->
     <nav class="navbar navbar-expand-lg navbar-$teal-300 bg-light">
         <div class="container-fluid">
             <a href="/" class="pull-left"><img src="{% static 'images/logo.png' %}" alt="logo"
@@ -85,6 +86,9 @@
             </div>
         </div>
     </nav>
+    <!-- Navbar ends -->
+
+    <button class="btn btn-danger my-2 mx-2" id="back_button">Back</button>
 
     <div class="container">
         <span id="pswd_alert" style="color: red;" class="alert"></span>
@@ -104,7 +108,7 @@
     </div>
     <!-- Content -->
     <div class="container my-4 register-form">
-        <form method="post" class="row g-3 needs-validation" enctype="multipart/form-data" novalidate>
+        <form method="post" class="row g-3 needs-validation" enctype="multipart/form-data" onsubmit="return matchPassword()">
             {% csrf_token %}
             <div class="row justify-content-md-center">
                 <div class="col-md-auto">
@@ -203,14 +207,14 @@
 
             <div class="row justify-content-md-center">
                 <div class="col-md-auto my-3">
-                    <button class="btn btn-primary" type="submit" name="Signup">Submit</button>
+                    <button class="btn btn-primary submit_btn" type="submit" name="Signup">Submit</button>
                     <!-- <button class="btn btn-primary" type="submit" name="Signup" onclick="matchPassword();">Submit</button> -->
                 </div>
             </div>
             <!-- <div class="col-sm-6">
                 <a href="{% provider_login_url 'google' %}" class="btn btn-outline-danger">Signup with Google</a>
-            </div>
-            <div class="col-sm-6 float-right">
+            </div> -->
+            <!--<div class="col-sm-6 float-right">
                 <button class="btn btn-outline-primary ">Signup with Facebook</button>
             </div> -->
         </form>
@@ -221,7 +225,7 @@
         crossorigin="anonymous"></script>
 
     <!-- For password confirmation -->
-    <!-- <script>
+    <script>
         function matchPassword() {
             var pswd = document.getElementById("pswd");
             var cnfpswd = document.getElementById("cnfpswd");
@@ -231,7 +235,13 @@
                 return false;
             }
         }
-    </script> -->
+    </script>
+
+    <script type="text/javascript">
+        document.getElementById('back_button').onclick = function(){
+            location.href = "/";
+        }
+    </script>
 
     <!-- for msg timeout -->
     <script>

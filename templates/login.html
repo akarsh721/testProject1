@@ -133,6 +133,8 @@
     </nav> -->
     <!-- Navbar ends -->
 
+    <button class="btn btn-danger my-2 mx-2" id="back_button">Back</button>
+
     <!-- Message Framework -->
     <div class="container my-2 w-50 messages">
         {% if messages %}
@@ -170,12 +172,19 @@
             if (name == null || name == "") {
                 alert("Name can't be blank");
                 return false;
+            } else if (password == null || password == ""){
+                alert("Password can't be blank");
+                return false;
             } else if (password.length < 6 || password.length >15) {
                 alert("Password length must be in between 6 and 15");
                 return false;
             }
-        }  
+        }
+        document.getElementById('back_button').onclick = function(){
+            location.href = "/";
+        }
     </script>
+
     <!-- For message timeout -->
     <script>
         var msg_ele = document.getElementById("message_container")
