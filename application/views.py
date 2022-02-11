@@ -212,7 +212,7 @@ def userlogin(request):
 
 def registerUser(request):
     if request.method == 'POST':
-        # if request.POST['password'] == request.POST['cnfpswd']:
+        if request.POST['password'] == request.POST['cnfpswd']:
             registerform = RegisterUserForm(request.POST,request.FILES)
 
             if registerform.is_valid():
@@ -235,8 +235,8 @@ def registerUser(request):
                 ers = registerform.errors
                 messages.add_message(request,messages.ERROR,ers)
                 print(ers)
-        # else:
-        #     messages.add_message(request,messages.ERROR,'Password did not match')
+        else:
+            messages.add_message(request,messages.ERROR,'Password did not match')
     else:
         registerform = RegisterUserForm()
     return render(request,'signup.html')

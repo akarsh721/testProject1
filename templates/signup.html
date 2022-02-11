@@ -108,7 +108,7 @@
     </div>
     <!-- Content -->
     <div class="container my-4 register-form">
-        <form method="post" class="row g-3 needs-validation" enctype="multipart/form-data" onsubmit="return matchPassword()">
+        <form method="post" class="row g-3 needs-validation" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="row justify-content-md-center">
                 <div class="col-md-auto">
@@ -224,18 +224,6 @@
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
 
-    <!-- For password confirmation -->
-    <script>
-        function matchPassword() {
-            var pswd = document.getElementById("pswd");
-            var cnfpswd = document.getElementById("cnfpswd");
-            if (pswd != cnfpswd) {
-                // document.getElementById("pswd_alert").innerHTML = "Password did not matched!!";
-                alert('Password did not match');
-                return false;
-            }
-        }
-    </script>
 
     <script type="text/javascript">
         document.getElementById('back_button').onclick = function(){
