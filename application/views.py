@@ -1,3 +1,4 @@
+from functools import partial
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from .models import RegisterUser,userQuestion
@@ -107,8 +108,6 @@ def home(request):
         userinfo = RegisterUser.objects.get(username = loggedInUser)
         name = userinfo.firstName
         userid = userinfo.id
-        # Ucountry = userinfo.country
-        # print(name)
 
         if request.method == 'POST':
             newUserQuestionForm = userQuestionForm(request.POST,request.FILES)
@@ -141,7 +140,6 @@ def fetchqueries(request):
     if loggedInUsername:
         userinfo = RegisterUser.objects.get(username = loggedInUsername)
         queryobject = userQuestion.objects.filter(queriedBy = loggedInUsername)
-    # print(queryobject)
         return render(request,'fetchqueries.html',{'queryobject':queryobject,'username':loggedInUsername,'userinfo':userinfo})
     else:
         return render(request,'fetchqueries.html',{'username':loggedInUsername})
@@ -152,7 +150,7 @@ def deleteQuery(request,id):
     delquery.delete()
     return redirect("/fetchqueries")
 
-def updateProfile(request,id):
+def update_profile(request,id):
     userinfo = RegisterUser.objects.get(pk=id)
     username = userinfo.firstName
     print(username)
@@ -172,7 +170,7 @@ def updateProfile(request,id):
 
     else:
         updateform = RegisterUserForm(instance=userinfo)
-    return render(request,'updateProfile.html',{'userinfo':userinfo,'user_name':username})
+    return render(request,'update_profile.html',{'userinfo':userinfo,'user_name':username})
 
 
 def about(request):
@@ -224,12 +222,12 @@ def registerUser(request):
                 # Email and sms
 
                 #SEND MAIL
-                # useremail = request.POST['username']
-                # mail_subj = 'Registration Successful, Welcome User'
-                # mail_msg = f"Hello {useremail}, \n Thank You for registering with us. \n This is system generated mail , do not reply to this. "
-                # mail_from = settings.EMAIL_HOST_USER
-                # mail_to = [useremail,]
-                # send_mail(mail_subj,mail_msg,mail_from,mail_to)
+                useremail = request.POST['username']
+                mail_subj = 'Registration Successful, Welcome User'
+                mail_msg = f"Hello {useremail}, \n Thank You for registering with us. \n This is system generated mail , do not reply to this. "
+                mail_from = settings.EMAIL_HOST_USER
+                mail_to = [useremail,]
+                send_mail(mail_subj,mail_msg,mail_from,mail_to)
                 
             else:
                 ers = registerform.errors

@@ -17,7 +17,7 @@ class RegisterUser(models.Model):
    cnfpswd = models.CharField(max_length=20)
    country = models.CharField(max_length=20)
    age = models.PositiveIntegerField(null=True)
-#  contact = models.PositiveBigIntegerField()
+   contact = models.PositiveBigIntegerField(null=True, blank=True)
    gender = models.CharField(max_length=11)
    profile = models.ImageField(upload_to='ProfileImages',null=True,blank=True)
    

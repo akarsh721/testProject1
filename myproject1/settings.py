@@ -158,8 +158,9 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 # Enter Email and password to send mails
-EMAIL_HOST_USER = '' 
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_USER = 'dtesting251' 
+EMAIL_HOST_PASSWORD = 'testingdev321'
+# need to allow less secure setting from Gmail account security
 
 
 #for allauth services
