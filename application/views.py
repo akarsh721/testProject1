@@ -190,6 +190,7 @@ def contact(request):
 def writeUs(request):
     return render(request,'contact_writeUs.html')
 
+
 def userlogin(request):
     if request.method == 'POST':
         uname = request.POST['username']

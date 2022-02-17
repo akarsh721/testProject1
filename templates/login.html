@@ -139,11 +139,11 @@
     <!-- Message Framework -->
     <div class="container my-2 w-50 messages">
         {% if messages %}
-            {% for message in messages %}
-                <div class="alert alert-{{message.tags}}" id="message_container">
-                    <center>{{message}}</center>
-                </div>
-            {% endfor %}
+        {% for message in messages %}
+        <div class="alert alert-{{message.tags}}" id="message_container">
+            <center>{{message}}</center>
+        </div>
+        {% endfor %}
         {% endif %}
     </div>
 
@@ -159,9 +159,13 @@
             <input type="submit" name="" value="Login">
         </form>
         <a href="/registerUser">Don't have an account? Click to Register</a>
-        <div class="col-sm-6">
-            <a href="{% provider_login_url 'google' %}" class="btn btn-outline-danger">Signup with Google</a>
+        <div class="col-sm-6 my-2 mx-4">
+            <a href="{% provider_login_url 'google' %}" class="btn btn-outline-danger"
+                style="width: 200px; height: 40px;">Signin with Google</a>
         </div>
+        <!--<div class="col-sm-6 float-right">
+                <button class="btn btn-outline-primary ">Signup with Facebook</button>
+            </div> -->
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
@@ -176,15 +180,15 @@
             if (name == null || name == "") {
                 alert("Name can't be blank");
                 return false;
-            } else if (password == null || password == ""){
+            } else if (password == null || password == "") {
                 alert("Password can't be blank");
                 return false;
-            } else if (password.length < 6 || password.length >15) {
+            } else if (password.length < 6 || password.length > 15) {
                 alert("Password length must be in between 6 and 15");
                 return false;
             }
         }
-        document.getElementById('back_button').onclick = function(){
+        document.getElementById('back_button').onclick = function () {
             location.href = "/";
         }
     </script>
@@ -192,9 +196,9 @@
     <!-- For message timeout -->
     <script>
         var msg_ele = document.getElementById("message_container")
-        setTimeout(function(){
+        setTimeout(function () {
             msg_ele.style.display = "none";
-        },3000);
+        }, 3000);
     </script>
 </body>
 
